@@ -244,7 +244,7 @@ namespace AAMS.Client.WPF.ViewModels
                 if (ClassCount != 0)
                 {
                     GetAverageGrade(SelectedStudentWithRelation.StudentRelation.StudentID);
-                    GradeInfos = new ObservableCollection<GradeInfo>(StaticVariables.AAMSConnect.GetGradeInfoList().Where(x => x.StudentID == SelectedStudentWithRelation.StudentRelation.StudentID));
+                    GradeInfos = new ObservableCollection<GradeInfo>(GetGradeInfos(SelectedStudentWithRelation.StudentRelation.StudentID));
                     ShowPlot();
                 }
                 else
@@ -280,6 +280,28 @@ namespace AAMS.Client.WPF.ViewModels
             AverageGrade = Convert.ToSingle(rdr.GetDouble(0));
             rdr.Dispose();
             return 0;
+        }
+        public List<GradeInfo> GetGradeInfos(int id)
+        {
+            string cmd = "USE wut SELECT class_grade,class_name,t_grade.class_id,t_grade.student_id,t_student_info.student_name " +
+                         "FROM t_grade " +
+                         "JOIN t_classinfo ON t_grade.class_id = t_classinfo.class_id " +
+                         "JOIN t_student_info ON t_grade.student_id = t_student_info.student_id "+
+                         $"WHERE t_grade.student_id={id}";
+            SqlDataReader res = StaticVariables.AAMSConnect.ExecuteReader(cmd);
+            List<GradeInfo> tempGradeInfos = new List<GradeInfo>();
+            for (int i = 0; res.Read(); i++)
+            {
+                GradeInfo g = new GradeInfo();
+                g.ClassGrade = Convert.ToSingle(res.GetDouble(0));
+                g.ClassName = res.GetString(1).Trim();
+                g.ClassID = res.GetInt32(2);
+                g.StudentID = res.GetInt32(3);
+                g.StudentName = res.GetString(4).Trim();
+                tempGradeInfos.Add(g);
+            }
+            res.Dispose();
+            return tempGradeInfos;
         }
         public int ShowPlot()
         {

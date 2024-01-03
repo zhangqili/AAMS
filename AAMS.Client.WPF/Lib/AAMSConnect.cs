@@ -368,7 +368,7 @@ namespace AAMS.Client.WPF.Lib
                          "FROM t_grade " +
                          "JOIN t_classinfo ON t_grade.class_id = t_classinfo.class_id " +
                          "JOIN t_student_info ON t_grade.student_id = t_student_info.student_id ";
-            SqlDataReader res = StaticVariables.AAMSConnect.ExecuteReader(cmd);
+            SqlDataReader res = ExecuteReader(cmd);
             List<GradeInfo> tempGradeInfos = new List<GradeInfo>();
             for (int i = 0; res.Read(); i++)
             {
@@ -395,7 +395,7 @@ namespace AAMS.Client.WPF.Lib
                 $"OR CONVERT(varchar(16),t_grade.student_id) LIKE \'%{filter}%\'" +
                 $"OR class_name LIKE \'%{filter}%\'" +
                 $"OR t_student_info.student_name LIKE \'%{filter}%\'";
-            SqlDataReader res = StaticVariables.AAMSConnect.ExecuteReader(cmd);
+            SqlDataReader res = ExecuteReader(cmd);
             List<GradeInfo> tempGradeInfos = new List<GradeInfo>();
             for (int i = 0; res.Read(); i++)
             {
@@ -442,7 +442,7 @@ namespace AAMS.Client.WPF.Lib
             }
             if(isDesc)
                 cmd += $"DESC";
-            SqlDataReader res = StaticVariables.AAMSConnect.ExecuteReader(cmd);
+            SqlDataReader res = ExecuteReader(cmd);
             List<GradeInfo> tempGradeInfos = new List<GradeInfo>();
             for (int i = 0; res.Read(); i++)
             {
