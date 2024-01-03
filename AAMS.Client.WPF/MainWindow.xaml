@@ -1,0 +1,54 @@
+﻿<mah:MetroWindow x:Class="AAMS.Client.WPF.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:AAMS.Client.WPF"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    mc:Ignorable="d"
+    Title="教务管理系统" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="文件">
+                <MenuItem Header="添加">
+                    <MenuItem Header="学生" x:Name="AddStudentMenuitem" Click="AddStudentMenuitem_Click"></MenuItem>
+                    <MenuItem Header="院系" x:Name="AddDepartmentMenuitem" Click="AddDepartmentMenuitem_Click"></MenuItem>
+                    <MenuItem Header="课程" x:Name="AddClassMenuitem" Click="AddClassMenuitem_Click"></MenuItem>
+                    <MenuItem Header="成绩" x:Name="AddGradeMenuitem" Click="AddGradeMenuitem_Click"></MenuItem>
+                </MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="注销"></MenuItem>
+                <MenuItem x:Name="RestartMenuItem" Header="重启" Click="RestartMenuItem_Click"></MenuItem>
+                <MenuItem Header="退出"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="调试">
+                <MenuItem Header="刷新" x:Name="RefreshMenuItem" Click="RefreshMenuItem_Click"></MenuItem>
+                <MenuItem Header="打开旧版"></MenuItem>
+                <MenuItem Header="SQL视图" x:Name="SQLWindowMenuItem" Click="SQLWindowMenuItem_Click"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="5"></ColumnDefinition>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" ></GridSplitter>
+            <TreeView x:Name="MainTreeView" SelectedItemChanged="MainTreeView_OnSelectedItemChanged">
+                <TreeViewItem Header="欢迎">
+                </TreeViewItem>
+                <TreeViewItem Visibility="Collapsed" Header="分析" IsExpanded="True">
+                    <TreeViewItem Header="成绩分析"></TreeViewItem>
+                </TreeViewItem>
+                <TreeViewItem Header="管理" IsExpanded="True">
+                    <TreeViewItem Header="院系管理"></TreeViewItem>
+                    <TreeViewItem Header="学生管理"></TreeViewItem>
+                    <TreeViewItem Header="课程管理"></TreeViewItem>
+                    <TreeViewItem Header="成绩管理"></TreeViewItem>
+                </TreeViewItem>
+            </TreeView>
+            <Border x:Name="MainContainer" Grid.Column="2">
+            </Border>
+        </Grid>
+    </DockPanel>
+    </mah:MetroWindow>

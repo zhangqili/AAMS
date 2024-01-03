@@ -1,0 +1,58 @@
+﻿<Window x:Class="AAMS.Client.WPF.Views.AddGradeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AAMS.Client.WPF.Views"
+        xmlns:viewModels="clr-namespace:AAMS.Client.WPF.ViewModels"
+        mc:Ignorable="d"
+        Title="添加成绩" Height="auto" Width="auto" ResizeMode="CanResize" WindowStartupLocation="CenterScreen"   SizeToContent="WidthAndHeight" WindowStyle="ToolWindow">
+    <Window.DataContext>
+        <viewModels:AddGradeViewModel></viewModels:AddGradeViewModel>
+    </Window.DataContext>
+    <DockPanel>
+        <Grid DockPanel.Dock="Bottom">
+            <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
+                <Button x:Name="CancelButton" Click="CancelButton_Click">取消</Button>
+                <Button x:Name="ConfirmButton" Click="ConfirmButton_Click" Command="{Binding ConfirmCommand}">确定</Button>
+            </StackPanel>
+        </Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock>学生：</TextBlock>
+            <TextBlock Grid.Row="1">课程：</TextBlock>
+            <TextBlock Grid.Row="2">成绩：</TextBlock>
+            <ComboBox Grid.Row="0" MinWidth="100" Grid.Column="1" ItemsSource="{Binding StudentInfos}" SelectedItem="{Binding SelectedStudentInfo}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Path=Name}"/>
+                            <TextBlock Text=" - "/>
+                            <TextBlock Text="{Binding Path=ID}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <ComboBox Grid.Row="1" MinWidth="100" Grid.Column="1" ItemsSource="{Binding ClassInfos}" SelectedItem="{Binding SelectedClassInfo}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Path=Name}"/>
+                            <TextBlock Text=" - "/>
+                            <TextBlock Text="{Binding Path=ID}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <TextBox MinWidth="100" Grid.Row="2" Grid.Column="1" Text="{Binding Score}"></TextBox>
+        </Grid>
+    </DockPanel>
+</Window>

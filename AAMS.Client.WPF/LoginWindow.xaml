@@ -1,0 +1,31 @@
+﻿<mah:MetroWindow x:Class="AAMS.Client.WPF.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AAMS.Client.WPF"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        mc:Ignorable="d"
+        Title="登录" Height="auto" Width="450" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="Height">
+    <Border BorderThickness="24">
+        <Grid>
+            <StackPanel>
+                <TextBlock>用户名</TextBlock>
+                <TextBox x:Name="UsernameTextBox" Text=""></TextBox>
+                <TextBlock>密码</TextBlock>
+                <PasswordBox x:Name="PasswordBox" Password=""></PasswordBox>
+                <Expander Header="更多"  Style="{DynamicResource MahApps.Styles.Expander.}" >
+                    <StackPanel>
+                        <TextBlock>服务器地址</TextBlock>
+                        <TextBox x:Name="ServerTextBox" Text=""></TextBox>
+                        <TextBlock>端口</TextBlock>
+                        <TextBox x:Name="PortTextBox" Text=""></TextBox>
+                        <TextBlock>数据库名称</TextBlock>
+                        <TextBox x:Name="DatabaseNameBox" Text=""></TextBox>
+                    </StackPanel>
+                </Expander>
+                <Button x:Name="LoginButton" Click="LoginButton_Click">登录</Button>
+            </StackPanel>
+        </Grid>
+    </Border>
+</mah:MetroWindow>

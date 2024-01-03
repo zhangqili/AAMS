@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "AAMS.Client.WPF": {
+      "commandName": "Project",
+      "sqlDebugging": true
+    }
+  }
+}
